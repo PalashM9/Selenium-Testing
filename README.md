@@ -90,3 +90,34 @@
 **Considerations** 
 
 > Input values of the three parameters are used
+
+
+--------------------------------------------------------------------------------------------
+
+
+
+
+**Example - 4 -> Check WebPage For Links & Texts**
+
+The concept includes opening bank emi calculator page and fetching the amount of loan.It comprises of:
+          
+          initiating webpage
+          checking title of the page to be expected
+          checking title of certain section of the page to be expected
+          checking if any hyperlinks are empty in the page
+          checking if any hyperlinks are broken in the page
+
+
+**_Libraries used - Setup_**
+
+    chromedriver.exe
+    selenium-server-standalone-2.53.0.jar
+    TestNG Plugin
+
+**_Run_**
+
+  Need to run file webPageAssert.java inside src folder
+  
+**Considerations** 
+
+> Response code greater than 400 considered to be a broken link
