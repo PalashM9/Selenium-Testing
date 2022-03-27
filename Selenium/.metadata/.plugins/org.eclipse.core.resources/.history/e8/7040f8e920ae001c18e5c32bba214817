@@ -1,0 +1,14 @@
+package com.test.selenium;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class webPageAssert {
+	static WebDriver driver = new ChromeDriver();
+	
+	public void checkTitleOfPage() {
+		
+		String expectedTitle = "Y1 - führende Magento-Agentur & eCommerce-Beratung";
+	}
+
+}

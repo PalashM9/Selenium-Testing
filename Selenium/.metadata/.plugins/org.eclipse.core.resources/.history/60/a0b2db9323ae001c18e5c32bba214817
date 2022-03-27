@@ -1,0 +1,71 @@
+package com.test.selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+import java.net.HttpURLConnection;
+import java.util.Iterator;
+import java.util.List;
+
+public class webPageAssert {
+	static WebDriver driver = new ChromeDriver();
+	
+	@Test (priority = 1)
+	public void checkTitleOfPage() {
+		
+		String expectedTitle = "Y1 - führende Magento-Agentur & eCommerce-Beratung";
+		String actualTitle = driver.getTitle();
+		
+		Assert.assertEquals(expectedTitle,actualTitle);
+	}
+	
+	@Test (priority = 2)
+	public void checkThemeTitleOfPage() {
+		
+		String expectedTitle = "Unsere Top Referenzen";
+
+		WebElement loanComponent = driver.findElement(By.cssSelector(".themen-slider__header >h3"));
+		String actualTitle = loanComponent.getText();
+		
+		Assert.assertEquals(expectedTitle,actualTitle);
+	}
+	
+	@Test (priority = 3)
+	public void checkifLinksHaveValues() {
+		String url = "";
+		boolean isEmptyLink = false;
+		
+		List<WebElement> links = driver.findElements(By.tagName("a"));
+		
+		Iterator<WebElement> it = links.iterator();
+		
+		url = it.next().getAttribute("href");
+		
+		if(url == null || url.isEmpty()){
+			isEmptyLink = true;
+		}
+		
+		Assert.assertEquals(isEmptyLink,false);
+	}
+	
+	public static void setUnsuccessMsg() {
+		System.out.println("Unable to process !");
+	}
+	
+	public static void initiateDriver() {
+
+	        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+
+	        try {
+	        	driver.manage().window().maximize();
+	            driver.get("https://www.y1.de/");           
+	            
+	        } catch (Exception e) {
+	            setUnsuccessMsg();
+	        }
+	}
+	    
+}

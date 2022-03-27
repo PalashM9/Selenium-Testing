@@ -1,0 +1,28 @@
+package com.test.selenium;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class webPageAssert {
+	static WebDriver driver = new ChromeDriver();
+	
+	public void checkTitleOfPage() {
+		
+		String expectedTitle = "Y1 - führende Magento-Agentur & eCommerce-Beratung";
+		
+	}
+	
+	 public static void initiateDriver() {
+
+	        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+
+	        try {
+	        	driver.manage().window().maximize();
+	            driver.get("https://emicalculator.net/");           
+	            
+	        } catch (Exception e) {
+	            setUnsuccessMsg();
+	        }
+	    }
+	    
+}
