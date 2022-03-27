@@ -1,0 +1,57 @@
+package com.test.selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class webPageElementInteractionTest {
+
+	static WebDriver driver = new ChromeDriver();
+	static Actions act = new Actions(driver);
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//Enabling the WebDriver and Login of the Application
+        initiateDriver();
+        assignComponents();
+	}
+	
+	public static void setUnsuccessMsg() {
+		System.out.println("Unable to process !");
+	}
+	
+    public static void initiateDriver() {
+
+        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+
+        try {
+            driver.get("https://emicalculator.net/");           
+            
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            //e.printStackTrace();
+            setUnsuccessMsg();
+        }
+    }
+    
+    public static void assignComponents() {
+
+        try {
+           WebElement loanComponent = driver.findElement(By.cssSelector("#loanamountslider >span"));     
+           WebElement interestComponent = driver.findElement(By.cssSelector("#loaninterestslider >span"));     
+           WebElement tenureComponent = driver.findElement(By.cssSelector("#loantermslider >span"));     
+           
+           act.dragAndDropBy(loanComponent, xOffset: 83, yOffset: 0);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            //e.printStackTrace();
+            setUnsuccessMsg();
+        }
+    }
+}
