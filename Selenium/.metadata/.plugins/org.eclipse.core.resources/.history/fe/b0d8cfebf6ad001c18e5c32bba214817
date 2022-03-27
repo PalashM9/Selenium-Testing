@@ -1,0 +1,24 @@
+package com.test.selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class webPageTest {
+
+	public static void main(String[] args) {
+
+
+		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("https://accounts.spotify.com/en/login?continue=https");
+		driver.findElement(By.id("login-username")).sendKeys("xyz@gmail.com");
+		driver.findElement(By.id("login-password")).sendKeys("123");
+		driver.findElement(By.id("login-button")).click();
+		
+		
+
+	}
+
+}

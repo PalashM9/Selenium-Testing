@@ -1,0 +1,79 @@
+package com.test.selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
+
+public class webPageTest {
+
+	static WebDriver driver = new ChromeDriver();
+	public static void main(String[] args) {
+		
+		
+		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		
+		
+		driver.get("https://accounts.spotify.com/en/login?continue=https");
+		driver.findElement(By.id("login-username")).sendKeys("palashm0002@gmail.com");
+		driver.findElement(By.id("login-password")).sendKeys("ilovemusic");
+		driver.findElement(By.id("login-button")).click();
+			
+		WebDriverWait wait = new WebDriverWait(driver, 100);
+		
+		WebElement myDynamicElement = 
+				(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id("account-settings-link")));
+		WebElement accountSettings = driver.findElement(By.id("account-settings-link"));
+		WebElement WebPlayerBtn = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/button[2]"));
+		WebPlayerBtn.click();
+		WebElement myDynamicElement2 = 
+				(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"main\"]/div/div[2]/nav/div[1]/ul/li[2]/a")));
+	
+		WebElement searchBtn = driver.findElement(By.xpath("//*[@id=\"main\"]/div/div[2]/nav/div[1]/ul/li[2]/a"));
+		searchBtn.click();
+		WebElement myDynamicElement3 = 
+				(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"main\"]/div/div[2]/div[1]/header/div[3]/div/div/form/input")));
+		
+		WebElement searchBar = driver.findElement(By.xpath("//*[@id=\"main\"]/div/div[2]/div[1]/header/div[3]/div/div/form/input"));
+		
+		searchBar.click();
+		searchBar.sendKeys("Yellow");
+		searchBar.sendKeys(Keys.RETURN);
+		
+		
+		
+		WebElement myDynamicElement4 = 
+				(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"main\"]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/button")));
+	//	WebElement myDynamicElement5 = 
+		//		(new WebDriverWait(driver, 30)).until(ExpectedConditions.presenceOfElementLocated(By.id("onetrust-accept-btn-handler")));
+		enableWaitingForElementToLoad(By.id("onetrust-accept-btn-handler"));
+		WebElement acceptCookies = driver.findElement(By.id("onetrust-accept-btn-handler"));
+		acceptCookies.click();
+		WebElement playSong = driver.findElement(By.xpath("//*[@id=\"main\"]/div/div[2]/div[2]/footer/div/div[2]/div/div[1]/button"));
+		playSong.click();
+		playSong.click();
+		String currentUrl = driver.getCurrentUrl();
+		System.out.println(currentUrl);
+		//driver.close();
+		
+	}
+	
+	public static void setSuccessMsg() {
+		System.out.println("Login successfully !!");
+	}
+	
+	public static void setUnsuccessMsg() {
+		System.out.println("Unable to login !!");
+	}
+	
+	public static void enableWaitingForElementToLoad(By location) {
+		WebElement elementToWait= 
+				(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(location));
+	}
+
+}

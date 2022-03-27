@@ -1,0 +1,44 @@
+package com.test.selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class webPageTest {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("https://accounts.spotify.com/en/login?continue=https");
+		driver.findElement(By.id("login-username")).sendKeys("palashm0002@gmail.com");
+		driver.findElement(By.id("login-password")).sendKeys("ilovemusic");
+		driver.findElement(By.id("login-button")).click();
+		
+		
+		String currentUrl = driver.getCurrentUrl();
+		
+		if(currentUrl == "https://open.spotify.com") {
+			setSuccessMsg();
+			driver.findElement(By.xpath("//*[@id=\"main\"]/div/div[2]/nav/div[1]/ul/li[2]/a")).click();
+			driver.findElement(By.xpath("//*[@id=\"main\"]/div/div[2]/div[1]/header/div[3]/div/div/form/input")).click();
+		}
+		else if(currentUrl == "https://accounts.spotify.com/en/status") {
+			setSuccessMsg();
+			driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/button[2]")).click();	
+			driver.findElement(By.xpath("//*[@id=\"main\"]/div/div[2]/div[1]/header/div[3]/div/div/form/input")).click();
+		}
+		else {
+			setUnsuccessMsg();
+		}
+	}
+	
+	public static void setSuccessMsg() {
+		System.out.println("Login successfully !!");
+	}
+	
+	public static void setUnsuccessMsg() {
+		System.out.println("Unable to login !!");
+	}
+
+}

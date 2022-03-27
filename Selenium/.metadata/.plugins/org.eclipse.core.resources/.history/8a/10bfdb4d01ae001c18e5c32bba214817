@@ -1,0 +1,64 @@
+package com.test.selenium;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.concurrent.TimeUnit;
+
+public class webPageTest {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		
+		driver.get("https://accounts.spotify.com/en/login?continue=https");
+		driver.findElement(By.id("login-username")).sendKeys("palashm0002@gmail.com");
+		driver.findElement(By.id("login-password")).sendKeys("ilovemusic");
+		driver.findElement(By.id("login-button")).click();
+		
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.MINUTES);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 100);
+		
+		WebElement searchBtn = driver.findElement(By.xpath("//*[@id=\"main\"]/div/div[2]/nav/div[1]/ul/li[2]/a"));;
+		WebElement searchBar = driver.findElement(By.xpath("//*[@id=\"main\"]/div/div[2]/div[1]/header/div[3]/div/div/form/input"));;
+		WebElement webPlayBtn = driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/button[2]"));
+		
+	//	WebElement element= wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/button[2]")));
+		
+		WebElement myDynamicElement = 
+				(new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/button[2]")));
+		String currentUrl = driver.getCurrentUrl();
+		System.out.println(currentUrl);
+	//	if(currentUrl == "https://open.spotify.com") {
+	/*
+	 * setSuccessMsg(); driver.findElement(By.xpath(
+	 * "//*[@id=\"main\"]/div/div[2]/nav/div[1]/ul/li[2]/a")).click();
+	 * driver.findElement(By.xpath(
+	 * "//*[@id=\"main\"]/div/div[2]/div[1]/header/div[3]/div/div/form/input")).
+	 * click();
+	 */	//}
+		/*
+		 * else if(currentUrl == "https://accounts.spotify.com/en/status") {
+		 * setSuccessMsg();
+		 * driver.findElement(By.xpath("//*[@id=\"root\"]/div/div[2]/div/div/button[2]")
+		 * ).click(); driver.findElement(By.xpath(
+		 * "//*[@id=\"main\"]/div/div[2]/div[1]/header/div[3]/div/div/form/input")).
+		 * click(); } else { setUnsuccessMsg(); }
+		 */
+		//driver.close();
+	}
+	
+	public static void setSuccessMsg() {
+		System.out.println("Login successfully !!");
+	}
+	
+	public static void setUnsuccessMsg() {
+		System.out.println("Unable to login !!");
+	}
+
+}
