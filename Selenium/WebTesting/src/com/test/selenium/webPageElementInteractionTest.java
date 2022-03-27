@@ -32,6 +32,7 @@ public class webPageElementInteractionTest {
         System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 
         try {
+        	driver.manage().window().maximize();
             driver.get("https://emicalculator.net/");           
             
         } catch (Exception e) {
@@ -66,6 +67,6 @@ public class webPageElementInteractionTest {
     public static void getLoanValue() {
     	
     	WebElement loanComponent = driver.findElement(By.cssSelector("#emiamount >p >span"));   
-    	System.out.println("The Loan Amount equals -> " + loanComponent.getText());
+    	System.out.println("The Loan EMI equals -> " + loanComponent.getText());
     }
 }
